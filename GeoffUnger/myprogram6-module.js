@@ -1,16 +1,18 @@
-var list = function(directory, extension, callback){
-    var fs = require('fs');
-    var files = [];
-    var callback = function (err, data) {
+var moduleFn = function (dir, ext, callbk) {
+    fs = require('fs');
+    var fileList = [];
+    var lister = function (err, data) {
+        if(err)
+            return callback(err);
         data.map(function (item) {
-            if (item.split(".")[1] == extension) {
-                files.push(item);
+            if (item.split(".")[1] == ext) {
+                fileList.push(item);
+                //console.log("pushing " + item + " to list");
             }
-        });
-
+        })
+        callbk(null,fileList);
     }
-    fs.readdir(directory, callback);
-    return(files);
-};
+    fs.readdir(dir, lister);
 
-module.exports = list;
+}
+module.exports = moduleFn;
