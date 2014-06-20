@@ -3,7 +3,7 @@ var moduleFn = function (dir, ext, callbk) {
     var fileList = [];
     var lister = function (err, data) {
         if(err)
-            return callback(err);
+            return callbk(err);
         data.map(function (item) {
             if (item.split(".")[1] == ext) {
                 fileList.push(item);
