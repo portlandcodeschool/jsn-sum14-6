@@ -9,4 +9,5 @@ var callback = function (err, data) {
     })
 
 }
-var output = fs.readdir(process.argv[2], callback);
+
+fs.readdir(process.argv[2], callback);
