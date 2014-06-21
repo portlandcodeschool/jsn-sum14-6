@@ -2,24 +2,15 @@ var fs = require('fs');
 var path = require('path');
 var results = [];
 
-module.exports = function(pathToFile, ext, callback) {
-
-  return {
-    filter: function( pathToFile, ext, callback ) {
-      console.log('"callback" in module filter function: ' + callback);
-
-      log = function(err, files) {
-        for ( var i = 0; i < files.length; i++ ) {
-          path.extname(files[i]);
-          if (path.extname(files[i])=== ('.' + ext)) {
-            results.push(files[i]);
-          }
-        }
+module.exports = function( pathToFile, ext, callback ) {
+  fs.readdir(pathToFile, function fillResult(err, fileNames) {
+    if(err) { return callback(err); }
+    for (var i = 0; i < fileNames.length; i++) {
+      if (path.extname(fileNames[i])=== ('.' + ext)) {
+        results.push(fileNames[i]);
       }
-
-      fileArray = fs.readdir( pathToFile, log );
-      callback(null, fileArray);
     }
-  };
+    callback(null, results);
+  });
+};
 
-}
