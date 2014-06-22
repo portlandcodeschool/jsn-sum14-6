@@ -38,7 +38,15 @@ recipeBox.readRecipeData = function (file, callback) {
 
 recipeBox.printRecipeCards = function (error, data) {
     if (error) throw error;
-    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i].title);
+        for (var j = 0; j < data[i].ingredients.length; j++) {
+            console.log((data[i].ingredients[j].amount)+' '+(data[i].ingredients[j].unit)+' '+(data[i].ingredients[j].ingredient));
+        }
+        for (var k = 0; k < data[i].directions.length; k++) {
+            console.log((data[i].directions[k].direction)+' '+(data[i].directions[k].unit)+' '+(data[i].directions[k].duration));
+        }
+    }
 }
     // this function should:
     // 1. Print the contents of data such that they look something like
