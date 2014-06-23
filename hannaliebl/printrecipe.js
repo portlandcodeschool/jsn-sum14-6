@@ -1,18 +1,4 @@
-//one file, index.js has split up files
-
-var fs = require('fs');
-
-var recipeBox = {};
-
-recipeBox.readRecipeData = function (file, callback) {
-    fs.readFile(file, function(error, data) {
-        if (error) throw error;
-        file = JSON.parse(data);
-        callback(null, file);
-    });
-}
-
-recipeBox.printRecipeCards = function (error, data) {
+printRecipeCards = function (error, data) {
     if (error) throw error;
     for (var i = 0; i < data.length; i++) {
         console.log(data[i].title);
@@ -27,4 +13,4 @@ recipeBox.printRecipeCards = function (error, data) {
     }
 }
 
-recipeBox.readRecipeData('./recipes.json', recipeBox.printRecipeCards);
+module.exports = printRecipeCards;
