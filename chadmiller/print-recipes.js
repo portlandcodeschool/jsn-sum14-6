@@ -27,7 +27,13 @@ function printRecipeCards(error, data) {
 
     var step = 1;
     recipe.directions.forEach(function(item) {
-      print(step + '. ' + item.direction);
+      var unit = (item.unit ? item.unit : '');
+      var duration = (item.duration ? item.duration : '');
+      var preposition = (duration ? ' for ' : '');
+
+      print(step + '. ' + item.direction + preposition + duration + ' ' +
+            pluralize(unit, duration));
+
       step++;
     });
 
