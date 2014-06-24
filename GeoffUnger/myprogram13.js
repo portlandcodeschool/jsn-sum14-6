@@ -13,11 +13,13 @@ var callback = function(request, response){
             timeObj.hour = date.getHours();
             timeObj.minute = date.getMinutes();
             timeObj.second = date.getSeconds();
+            response.writeHead(200, { 'Content-Type': 'application/json' });
             response.write(JSON.stringify(timeObj));
             response.end();
             break;
         }
         case "/api/unixtime":{
+            response.writeHead(200, { 'Content-Type': 'application/json' });
             response.write(JSON.stringify({unixtime:date.getTime()}));
             response.end();
             break;
