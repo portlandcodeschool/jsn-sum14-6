@@ -2,8 +2,8 @@ var http = require("http");
 var url = require("url");
 
 var callback = function(request, response){
-    response.write("Hi!");
-    response.end();
+    parsedURL = url.parse(request);
+    //route = parsedURL.path TODO continue from here
 }
 
 var server = http.createServer(callback);
