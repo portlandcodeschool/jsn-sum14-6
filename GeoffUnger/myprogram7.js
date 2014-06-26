@@ -1,9 +1,13 @@
-http = require('http');
+var http = require('http');
 
-url = process.argv[2];
+var url = process.argv[2];
+
+var returnString = "";
 
 http.get(url, function(res){
     res.on('data', function(chunk){
-        console.log(chunk.toString());
+        returnString += chunk.toString();
     })
+    console.log(returnString.length);
+    console.log(returnString);
 })
