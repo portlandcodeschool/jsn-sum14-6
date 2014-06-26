@@ -2,23 +2,26 @@
 
 var http = require('http');
 
-var urls = [process.argv[2], process.argv[3], process.argv[4]];
+var urls = [];
+var complete = [];
+var output = [];
 
-var complete = [false,false,false];
+var count = 1;
 
-var output = ["","",""];
+while(process.argv[count + 1]){
+    urls[count-1] = process.argv[count+1];
+    complete[count-1] = false;
+    output[count-1] = "";
+    count++;
+}
 
 urls.forEach(function(item, urlIndex, array){
     var req = http.request(urls[urlIndex], function (res) {
         res.on('data', function (chunk) {
             output[urlIndex] += chunk.toString();
-            //console.log(returnString);
         })
         res.on('end', function () {
             complete[urlIndex] = true;
-            //console.log("Index " + index + " end");
-            //console.log(complete);
-            //console.log(output);
             checkComplete();
         })
 
@@ -38,8 +41,6 @@ var checkComplete = function(){
     }
     output.forEach(function(item, index){
         console.log(output[index]);
-        //console.log("Outputting output index: " + index);
-        //console.log("Length of index item " + index + ": " + output[index].length);
     })
 }
 
