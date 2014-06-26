@@ -11,7 +11,8 @@ var printRecipeCards = function (error, data) {
             }
         )
         element.directions.forEach(function(element,index){
-            console.log((index+1) + ". " + element.direction);
+            console.log((index+1) + ". " + element.direction + (element.duration ? (" for " + element.duration +
+                " minutes") : ""));
         })
         console.log("\n\n");
 
