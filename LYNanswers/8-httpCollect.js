@@ -22,6 +22,7 @@
 //-----------------------------------------------------------
 
 // Here is Dan's solution using method 1:
+/*
 var http=require('http');
 var url = process.argv[2];
 
@@ -43,7 +44,7 @@ function onResponse(response) {
 }
 
 http.get(url,onResponse);
-
+*/
 
 // Here is learnyounode's official solution, using method 2 with BL:
 
